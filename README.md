@@ -102,26 +102,6 @@ Then `php artisan config:clear` and test a full checkout.
 
 ## Production Deployment
 
-### Server: DigitalOcean Droplet (159.223.18.157)
-
-```bash
-# Copy and run the server setup script on the droplet
-scp install-bagisto.sh user@159.223.18.157:~
-ssh user@159.223.18.157
-chmod +x install-bagisto.sh && ./install-bagisto.sh
-```
-
-### Point DNS
-
-Add an **A record** for `shop.sourcemonkey.online` → `159.223.18.157`
-
-### Enable HTTPS
-
-```bash
-sudo apt install -y certbot python3-certbot-nginx
-sudo certbot --nginx -d shop.sourcemonkey.online
-```
-
 ### Deploy PayGuard plugin
 
 ```bash
