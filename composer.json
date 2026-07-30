@@ -38,6 +38,7 @@
         "maatwebsite/excel": "^3.1.46",
         "mpdf/mpdf": "^8.2",
         "nesbot/carbon": "^3.0",
+        "payguard/sdk": "^1.0",
         "paypal/paypal-server-sdk": "^2.0",
         "pragmarx/google2fa": "^8.0",
         "predis/predis": "^2.2",
@@ -106,7 +107,9 @@
             "Webkul\\Stripe\\": "packages/Webkul/Stripe/src",
             "Webkul\\Tax\\": "packages/Webkul/Tax/src",
             "Webkul\\Theme\\": "packages/Webkul/Theme/src",
-            "Webkul\\User\\": "packages/Webkul/User/src"
+            "Webkul\\User\\": "packages/Webkul/User/src",
+            "Webkul\\PayGuard\\": "packages/Webkul/PayGuard/src"
+
         }
     },
     "autoload-dev": {

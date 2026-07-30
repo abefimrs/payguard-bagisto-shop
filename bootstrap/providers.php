@@ -93,4 +93,5 @@ return [
     TaxServiceProvider::class,
     ThemeServiceProvider::class,
     UserServiceProvider::class,
+    Webkul\PayGuard\Providers\PayGuardServiceProvider::class,
 ];
