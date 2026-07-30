@@ -1,196 +1,220 @@
-<p align="center">
-  <a href="http://www.bagisto.com">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/bagisto/temp-media/0b0984778fae92633f57e625c5494ead1fe320c3/dark-logo-P5H7MBtx.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://bagisto.com/wp-content/themes/bagisto/images/logo.png">
-      <img src="https://bagisto.com/wp-content/themes/bagisto/images/logo.png" alt="Bagisto logo">
-    </picture>
-  </a>
-</p>
+# BDShop — Bangladesh E-Commerce Platform
 
-<p align="center">
-    <a href="https://packagist.org/packages/bagisto/bagisto"><img src="https://poser.pugx.org/bagisto/bagisto/d/total.svg" alt="Total Downloads"></a>
-    <a href="https://packagist.org/packages/bagisto/bagisto"><img src="https://poser.pugx.org/bagisto/bagisto/v/stable.svg" alt="Latest Stable Version"></a>
-    <a href="https://packagist.org/packages/bagisto/bagisto"><img src="https://poser.pugx.org/bagisto/bagisto/license.svg" alt="License"></a>
-    <a href="#backers"><img src="https://opencollective.com/bagisto/backers/badge.svg" alt="Backers on Open Collective"></a>
-    <a href="#sponsors"><img src="https://opencollective.com/bagisto/sponsors/badge.svg" alt="Sponsors on Open Collective"></a>
-    <a href="https://www.codetriage.com/bagisto/bagisto"><img src="https://www.codetriage.com/bagisto/bagisto/badges/users.svg" alt="Open Source Helpers"></a>
-</p>
+A production-ready Bagisto e-commerce store built for Bangladesh merchants, integrated with [PayGuard](https://app.sourcemonkey.online) for bKash and Nagad payments.
 
-<p align="center">
-    <a href="https://twitter.com/intent/follow?screen_name=bagistoshop"><img src="https://img.shields.io/twitter/follow/bagistoshop?style=social"></a>
-    <a href="https://www.youtube.com/channel/UCbrfqnhyiDv-bb9QuZtonYQ"><img src="https://img.shields.io/youtube/channel/subscribers/UCbrfqnhyiDv-bb9QuZtonYQ?style=social"></a>
-</p>
+**Live demo:** [shop.sourcemonkey.online](https://shop.sourcemonkey.online)
+**Admin panel:** [shop.sourcemonkey.online/admin](https://shop.sourcemonkey.online/admin)
 
-<p align="center">
-    ➡️ <a href="https://bagisto.com/en/">Website</a> | <a href="https://devdocs.bagisto.com/">Documentation</a> | <a href="https://devdocs.bagisto.com/2.3/introduction/installation.html#installation">Installation Guide</a> | <a href="https://devdocs.bagisto.com/2.3/introduction/docker.html">Docker Installation</a>  | <a href="https://forums.bagisto.com/">Forums</a> | <a href="https://www.facebook.com/groups/bagisto/">Community</a> ⬅️
-</p>
+---
 
-<p align="center">
-    <img src="https://flagicons.lipis.dev/flags/4x3/sa.svg" alt="Arabic" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/de.svg" alt="German" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/us.svg" alt="English" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/es.svg" alt="Spanish" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/fr.svg" alt="French" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/il.svg" alt="Hebrew" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/in.svg" alt="Hindi" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/it.svg" alt="Italian" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/jp.svg" alt="Japanese" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/nl.svg" alt="Dutch" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/be.svg" alt="Belgian" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/ch.svg" alt="Swiss" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/at.svg" alt="Austrian" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/se.svg" alt="Swedish" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/no.svg" alt="Norwegian" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/dk.svg" alt="Danish" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/fi.svg" alt="Finnish" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/ie.svg" alt="Irish" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="Portuguese (Brazil)" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/tr.svg" alt="Turkish" width="24" style="display:block; margin:6px auto;">
-    <img src="https://flagicons.lipis.dev/flags/4x3/cn.svg" alt="Chinese (Simplified)" width="24" style="display:block; margin:6px auto;">
-</p>
+## Stack
 
-<a href="https://www.youtube.com/watch?v=OHbte7hdxYU">
-    <img class="flag-img" src="https://raw.githubusercontent.com/bagisto/temp-media/master/bagisto-featured.png" alt="Chinese" width="100%">
-</a>
+| Layer | Technology |
+|---|---|
+| Framework | [Bagisto](https://bagisto.com) (Laravel 11) |
+| Language | PHP 8.2 |
+| Database | MySQL 8 |
+| Cache / Queue | Redis |
+| Frontend | Vue.js + Vite |
+| Payment | [PayGuard](https://app.sourcemonkey.online) (bKash + Nagad) |
+| Server | DigitalOcean Ubuntu 24.04 |
+| Web Server | Nginx + PHP-FPM |
 
-# Introduction
+---
 
-Bagisto is an opensource [laravel eCommerce](https://www.bagisto.com/) framework built on some of the hottest technologies such as [Laravel](https://laravel.com/) (a [PHP](https://secure.php.net/) framework) and [Vue.js](https://vuejs.org/) a progressive Javascript framework.
+## Features
 
-Bagisto can help you cut down your time, cost, and workforce for building online stores or migrating from physical stores to the ever-demanding online world. Your business—whether small or huge—can benefit. The best part, it's straightforward to set it up!
+- 🛒 Full e-commerce storefront (browse → cart → checkout → order)
+- 💳 bKash and Nagad payments via PayGuard redirect flow
+- 🏷️ 5 product categories with 16 sample BD products (Fashion, Electronics, Grocery, Home & Living, Health & Beauty)
+- 📦 Order management with PayGuard transaction ID displayed in admin
+- 🔔 Signed webhook for reliable payment confirmation
+- 🌐 BDT currency, Bangladesh locale
 
-![Repo Stats](https://raw.githubusercontent.com/bagisto/temp-media/master/stats.webp)
+---
 
-# Getting Started
+## Local Development Setup
 
-![Getting Started](https://raw.githubusercontent.com/bagisto/temp-media/master/geting-starded.png)
+### Prerequisites
 
-[Install Bagisto](https://devdocs.bagisto.com/2.3/introduction/installation.html#install-using-gui-installer) with or without Composer (Check [Requirement Details](https://bagisto.com/en/download/))
+- Ubuntu / Debian Linux desktop
+- `sudo` access
 
-Follow the [Getting Started with Bagisto](https://www.youtube.com/watch?v=s_DhQrjK8Tw&list=PLe30vg_FG4OS3BU8rHUKQZ2mnX45xwSMc) Tutorial
+### 1. Install
 
-You can browse through the Free [Live Demo](https://demo.bagisto.com/)
+```bash
+chmod +x install-bagisto-local.sh
+./install-bagisto-local.sh
+```
 
-## ☁️ Bagisto Cloud Hosting
+This installs PHP 8.4, MySQL, Composer, Node, and Bagisto at `~/bdshop-local`.
 
-Deploy and scale your Bagisto store effortlessly with [Bagisto Cloud Hosting](https://bagisto.com/en/cloud-hosting/)  a fully managed, optimized hosting solution built specifically for Bagisto. Enjoy automatic scaling, built-in security, one-click updates, and expert support so you can focus on growing your business.
+### 2. Start
 
-[**Deploy Bagisto on Cloud Hosting**](https://bagisto.com/en/cloud-hosting/)
+```bash
+cd ~/bdshop-local
+php artisan serve --port=8000
+```
 
-<a href="https://bagisto.com/en/cloud-hosting/">
-    <img src="https://github.com/bagisto/temp-media/blob/master/bagisto_cloud.webp" alt="Deploy Bagisto on Cloud Hosting">
-</a>
+- Storefront → http://localhost:8000
+- Admin → http://localhost:8000/admin
 
-## ☁️ Cloud Installation via Amazon AMI
+### 3. Install the PayGuard plugin
 
-You can also deploy Bagisto quickly using our pre-configured Amazon Machine Image (AMI) available on the AWS Marketplace:
+```bash
+# Copy the plugin into your Bagisto install
+cp -r packages/Webkul/PayGuard ~/bdshop-local/packages/Webkul/PayGuard
 
-👉 [**Launch Bagisto on AWS**](https://aws.amazon.com/marketplace/pp/prodview-r3xv62axcqkpa)
+# Register in bootstrap/providers.php (add this line):
+# Webkul\PayGuard\Providers\PayGuardServiceProvider::class,
 
-This AMI allows you to get started with Bagisto on a cloud environment without manual setup. Ideal for scalable production or testing environments.
+cd ~/bdshop-local
+composer dump-autoload
+php artisan optimize:clear
+```
 
-# Accelerate Your Online Store Launch with the Bagisto Starter Pack!
+Then configure in **Admin → Configuration → Sales → PayGuard Settings**.
 
-Empower your e-commerce journey with the [Bagisto Starter Pack](https://store.webkul.com/bagisto-starter-pack.html), streamlining setup and integration for a seamless online store launch. Get ready to unlock success in the digital marketplace!
+### 4. Seed sample products
 
-# Open Source B2B eCommerce Platform
+```bash
+cp database/seeders/BdShopDemoDataSeeder.php ~/bdshop-local/database/seeders/
+cd ~/bdshop-local
+php artisan db:seed --class="Database\Seeders\BdShopDemoDataSeeder"
+```
 
-The [B2B eCommerce Platform](https://bagisto.com/en/b2b-commerce-platform/) enhances your Bagisto store with advanced Business-to-Business (B2B) features. It enables company-based purchasing, multi-user access, quote negotiation, and procurement management — empowering businesses to handle B2B workflows efficiently within a single platform.
+### 5. Test payments locally (ngrok)
 
-![Bagisto B2B Ecommerce Image](https://github.com/bagisto/temp-media/blob/master/intro-banner.webp)
+PayGuard's callback and webhook can't reach `localhost`. Use ngrok:
 
-# Multi Vendor Marketplace
+```bash
+ngrok http 8000
+# Copy the https URL, e.g. https://a1b2c3d4.ngrok-free.app
+```
 
-[Multi Vendor Marketplace](https://bagisto.com/en/laravel-multi-vendor-marketplace/) transforms a standard store into a complete marketplace, allowing the admin to manage sellers, commissions, product approvals, and order handling, while giving vendors a dedicated dashboard to manage their catalog, orders, and transactions.
+Temporarily set in `.env`:
+```
+APP_URL=https://a1b2c3d4.ngrok-free.app
+```
+Then `php artisan config:clear` and test a full checkout.
 
-![Multi Vendor Marketplace Image](https://github.com/bagisto/temp-media/blob/master/multi-vendor-marketplace.webp)
+---
+
+## Production Deployment
 
-# Multi Tenant eCommerce
+### Server: DigitalOcean Droplet (159.223.18.157)
 
-[Multi Tenant eCommerce](https://bagisto.com/en/laravel-multi-tenant-saas/) in Bagisto allows businesses to build a SaaS-based marketplace platform where multiple vendors or merchants can create and manage their own individual stores under a single system.
+```bash
+# Copy and run the server setup script on the droplet
+scp install-bagisto.sh user@159.223.18.157:~
+ssh user@159.223.18.157
+chmod +x install-bagisto.sh && ./install-bagisto.sh
+```
 
-![Multi Tenant eCommerce Image](https://github.com/bagisto/temp-media/blob/master/multi-tenant.webp)
+### Point DNS
 
-# POS
+Add an **A record** for `shop.sourcemonkey.online` → `159.223.18.157`
 
-[Point of Sale](https://bagisto.com/en/laravel-pos/) system manages retail operations efficiently, handling inventory management and fast customer checkout for your store.
+### Enable HTTPS
 
-![POS Image](https://github.com/bagisto/temp-media/blob/master/pos.webp)
+```bash
+sudo apt install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d shop.sourcemonkey.online
+```
 
-# Headless Commerce
+### Deploy PayGuard plugin
 
-The power of headless laravel commerce now comes to Bagisto enabling you to experience seamless and easily scalable storefront performance. Backed by some of the hottest tech stacks, Bagisto commerce can now be used to build powerful headless commerce solutions offering blazing-fast speed and easy customization powered by Next.js
+```bash
+cp -r packages/Webkul/PayGuard /var/www/bdshop/packages/Webkul/PayGuard
+cd /var/www/bdshop
+composer dump-autoload
+php artisan optimize:clear
+```
 
-## Next.js Commerce
+### Set PayGuard Webhook URL
 
-![Next.js Logo](https://raw.githubusercontent.com/bagisto/temp-media/master/next.png)
+In your PayGuard dashboard → Connections → Webhook URL:
+```
+https://shop.sourcemonkey.online/api/payguard/webhook
+```
 
-Develop and deploy your next headless commerce storefronts with Next JS and Bagisto: [https://github.com/bagisto/nextjs-commerce](https://github.com/bagisto/nextjs-commerce)
+---
 
-# Open Source Mobile eCommerce
+## PayGuard Configuration
 
-Revolutionize Your Online Store with Bagisto's Open Source eCommerce Mobile
+Get credentials from [app.sourcemonkey.online](https://app.sourcemonkey.online):
 
-![Mobile View Example Screens](https://raw.githubusercontent.com/bagisto/temp-media/master/open-source-ecommerce-mobile.png)
+| Admin Setting | Where to find it |
+|---|---|
+| API Key | Dashboard → API & Webhooks → Generate Key |
+| Webhook Secret | Dashboard → Connections → Edit → Webhook Secret |
+| bKash Connection ID | Dashboard → Connections → bKash row → ID |
+| Nagad Connection ID | Dashboard → Connections → Nagad row → ID |
 
-Mobile eCommerce powered by Flutter & Laravel: https://github.com/bagisto/opensource-ecommerce-mobile-app
+Configure under **Admin → Configuration → Sales → PayGuard Settings**.
 
-# AI Powered eCommerce
+---
 
-You can integrate popular large language models like GPT-5, Gemini 3, Mistral, and LLaMA 4, Grok (xAI),GLM 4.6,Kimi-K2, Qwen 3, Deepseek etc to build [AI-powered eCommerce](https://bagisto.com/en/extensions/laravel-chatbot-using-openai-chatgpt-llm/) applications with Bagisto. Some of the popular use cases where you can make use of LLMs to build AI apps are chatbot, automated product descriptions, customer support, search, and recommendations.
+## Project Structure
 
-![AI Powered eCommerce Examples](https://raw.githubusercontent.com/bagisto/temp-media/master/ai_powered_ecommerce.png)
+```
+bdshop-local/
+├── packages/
+│   └── Webkul/
+│       └── PayGuard/              ← PayGuard payment plugin
+│           ├── composer.json
+│           └── src/
+│               ├── Config/        ← payment-methods.php, system.php
+│               ├── Http/          ← PayGuardController (redirect/callback/webhook)
+│               ├── Payment/       ← PayGuardBkash, PayGuardNagad
+│               ├── Providers/     ← PayGuardServiceProvider
+│               ├── Resources/     ← admin order view blade partial
+│               ├── Routes/        ← web.php
+│               └── Services/      ← PayGuardClient (API + signature verification)
+├── database/
+│   └── seeders/
+│       └── BdShopDemoDataSeeder.php   ← 16 sample BD products
+└── ...
+```
 
-You can incorporate LLM API with your bagisto applications to send and receive queries and ensure proper error handling and rate limiting to prevent overuse of the API
+---
 
-# Decentralised eCommerce
+## Payment Flow
 
-Build [decentralised applications](https://bagisto.com/en/services/blockchain-commerce/) with Bagisto on popular blockchains like Ethereum and Solana by integrating smart contracts with the eCommerce platform. You can have decentralised marketplaces, [NFT marketplaces](https://bagisto.com/en/nft-marketplace/), and decentralised e-signing with the laravel eCommerce system.
+```
+Customer clicks "Place Order"
+    → Creates Bagisto order
+    → Opens PayGuard transaction (POST /transactions)
+    → Initiates bKash/Nagad  (POST /bkash/initiate/{id})
+    → Redirects to bKash/Nagad checkout
 
-![Decentralized Ecommerce Example Screens](https://raw.githubusercontent.com/bagisto/temp-media/master/decentralised-ecommerce.png)
+Customer completes payment
+    → Browser returns to /payguard/callback/{provider}
+    → Transaction ID saved to order
+    → Success page shown
 
-# Commerce For Every Need
+PayGuard server → POST /api/payguard/webhook
+    → Signature verified (HMAC-SHA256)
+    → Order marked paid + invoice created  ← source of truth
+```
 
-![Commerce Store Examples](https://raw.githubusercontent.com/bagisto/temp-media/master/every-need.png)
+---
 
-With Bagisto, you can easily create use cases for various commerce needs like Marketplaces, PWA, Native Mobile Apps, Multi-Tenants systems, Blockchain and many more.
+## Sample Product Categories
 
-# Built In Extensions
+| Category | Subcategories |
+|---|---|
+| Fashion | Sarees, Panjabi & Kurta, Salwar Kameez, Kids' Wear |
+| Electronics | Mobile Accessories, Home Appliances |
+| Grocery & Food | Spices & Masala, Snacks & Bakery |
+| Home & Living | Kitchen & Dining, Bedding & Linen |
+| Health & Beauty | Skincare, Haircare |
 
-![200+ Prebuilt Extensions](https://raw.githubusercontent.com/bagisto/temp-media/master/built_in_extension.png)
+---
 
-Make use of 100+ Bagisto pre-built extensions from [Bagisto Extension Markeptlace](https://bagisto.com/en/extensions/)
+## Related
 
-# Community
-
-![Forum and Facebook Communities](https://raw.githubusercontent.com/bagisto/temp-media/master/community.png)
-
-Get Bagisto support on [Facebook Group](https://www.facebook.com/groups/bagisto) and [Forum](https://forums.bagisto.com/)
-Would like to help us build the most developer-friendly E-Commerce platform? Start by reading our [Contributing Guide](https://github.com/bagisto/bagisto/blob/master/.github/CONTRIBUTING.md)!
-
-# License
-
-Bagisto is a fully open-source Laravel eCommerce framework that will always remain free under the [MIT License](https://github.com/bagisto/bagisto/blob/2.4/LICENSE).
-
-# Security Vulnerabilities
-
-If you think that you have found a security issue in Bagisto, please do not use the issue tracker and do not post it publicly. Instead, all security issues must be sent to [mailto:support@bagisto.com](mailto:support@bagisto.com).
-
-# Contributors
-
-This project is on [Open Collective](https://opencollective.com/bagisto), and it exists thanks to the people who contribute.
-
-<a href="https://github.com/bagisto/bagisto/graphs/contributors"><img src="https://opencollective.com/bagisto/contributors.svg?width=890&button=false"/></a>
-
-# Backers
-
-Thank you to all our backers! 🙏
-
-<a href="https://opencollective.com/bagisto" target="_blank"><img src="https://opencollective.com/bagisto/backers.svg?width=890"></a>
-
-# Sponsors
-
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website.
-
-<a href="https://opencollective.com/bagisto" target="_blank"><img src="https://opencollective.com/bagisto/sponsors.svg?width=890&isActive=true"></a>
+- PayGuard API docs: [app.sourcemonkey.online/docs](https://app.sourcemonkey.online/docs)
+- PayGuard backend: [github.com/abefimrs/payguard-backend](https://github.com/abefimrs/payguard-backend)
+- PayGuard Bagisto plugin: [github.com/abefimrs/bagisto-payguard](https://github.com/abefimrs/bagisto-payguard)
+- Bagisto docs: [devdocs.bagisto.com](https://devdocs.bagisto.com)
