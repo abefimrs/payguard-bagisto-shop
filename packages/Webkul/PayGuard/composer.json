@@ -1,11 +1,34 @@
 {
-    "name": "webkul/payguard",
-    "description": "PayGuard (bKash / Nagad) payment gateway integration for Bagisto",
+    "name": "payguard/bagisto-payguard",
+    "description": "PayGuard payment gateway for Bagisto — adds bKash and Nagad checkout for Bangladesh merchants",
     "type": "bagisto-package",
+    "version": "1.0.0",
     "license": "MIT",
+    "keywords": [
+        "bagisto",
+        "payguard",
+        "bkash",
+        "nagad",
+        "bangladesh",
+        "payment",
+        "laravel",
+        "ecommerce"
+    ],
+    "homepage": "https://github.com/abefimrs/bagisto-payguard",
+    "authors": [
+        {
+            "name": "PayGuard",
+            "email": "support@sourcemonkey.online",
+            "homepage": "https://app.sourcemonkey.online"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/abefimrs/bagisto-payguard/issues",
+        "source": "https://github.com/abefimrs/bagisto-payguard"
+    },
     "require": {
         "php": "^8.1",
-        "payguard/sdk": "^1.0"
+        "bagisto/shop": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -17,6 +40,12 @@
             "providers": [
                 "Webkul\\PayGuard\\Providers\\PayGuardServiceProvider"
             ]
+        },
+        "bagisto": {
+            "name": "PayGuard — bKash & Nagad",
+            "package-version": "2.x"
         }
-    }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

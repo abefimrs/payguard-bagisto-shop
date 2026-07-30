@@ -19,8 +19,8 @@ abstract class AbstractPayGuardPayment extends Payment
     public function getAdditionalDetails()
     {
         return [
-            'title' => 'Payment Method',
-            'value' => $this->getConfigData('title') ?? $this->code,
+            'title' => $this->getConfigData('title') ?? $this->code,
+            'value' => 'PayGuard',
         ];
     }
 

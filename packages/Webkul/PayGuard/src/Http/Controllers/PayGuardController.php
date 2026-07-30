@@ -111,8 +111,17 @@ class PayGuardController extends Controller
      */
     public function callback(Request $request, string $provider)
     {
-        $status      = $request->query('status');
-        $referenceId = $request->query('reference_id') ?? session('payguard_pending_order');
+        Log::info('PayGuard callback', $request->all());
+
+        // PayGuard sometimes HTML-encodes the callback URL before appending
+        // query params, producing keys like "amp;txn_id". Parse the raw query
+        // string ourselves to get clean field names.
+        $params = [];
+        parse_str(html_entity_decode($request->server('QUERY_STRING', '')), $params);
+
+        $status      = $params['status'] ?? $request->query('status');
+        $txnId       = $params['txn_id'] ?? $request->query('txn_id');
+        $referenceId = $params['reference_id'] ?? $request->query('reference_id') ?? session('payguard_pending_order');
 
         session()->forget('payguard_pending_order');
 
@@ -122,18 +131,20 @@ class PayGuardController extends Controller
             return redirect()->route('shop.checkout.cart.index');
         }
 
-        // Best-effort immediate confirmation in case the webhook hasn't
-        // landed yet — the webhook remains the source of truth.
         try {
             $order = $referenceId
                 ? $this->orderRepository->findOneByField('increment_id', $referenceId)
                 : null;
 
-            if ($order && $order->canInvoice()) {
-                $this->markOrderPaid($order);
+            if ($order) {
+                $this->saveTransactionId($order, $txnId);
+
+                if ($order->canInvoice()) {
+                    $this->markOrderPaid($order);
+                }
             }
         } catch (Exception $e) {
-            Log::warning('PayGuard: callback-time invoice creation skipped', ['error' => $e->getMessage()]);
+            Log::warning('PayGuard: callback-time processing skipped', ['error' => $e->getMessage()]);
         }
 
         session()->flash('order_id', $order->id ?? null);
@@ -173,8 +184,14 @@ class PayGuardController extends Controller
         try {
             $order = $this->orderRepository->findOneByField('increment_id', $referenceId);
 
-            if ($order && $order->canInvoice()) {
-                $this->markOrderPaid($order);
+            if ($order) {
+                // Webhook payload may carry txn_id directly
+                $txnId = $payload['txn_id'] ?? $payload['transaction_id'] ?? null;
+                $this->saveTransactionId($order, $txnId);
+
+                if ($order->canInvoice()) {
+                    $this->markOrderPaid($order);
+                }
             }
         } catch (Exception $e) {
             Log::error('PayGuard webhook: failed to mark order paid', [
@@ -187,6 +204,27 @@ class PayGuardController extends Controller
         }
 
         return response('OK', 200);
+    }
+
+    /**
+     * Persist the PayGuard transaction ID onto the order's payment record.
+     */
+    protected function saveTransactionId($order, ?string $txnId): void
+    {
+        if (! $txnId || ! $order->payment) {
+            return;
+        }
+
+        $additional = $order->payment->additional ?? [];
+
+        if (is_string($additional)) {
+            $additional = json_decode($additional, true) ?? [];
+        }
+
+        $additional['payguard_txn_id'] = $txnId;
+
+        $order->payment->additional = $additional;
+        $order->payment->save();
     }
 
     /**

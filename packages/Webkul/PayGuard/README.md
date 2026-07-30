@@ -1,132 +1,136 @@
 # PayGuard for Bagisto
 
-Adds **bKash** and **Nagad** as checkout payment methods, powered by your
-PayGuard gateway (`https://app.sourcemonkey.online`).
+[![Packagist Version](https://img.shields.io/packagist/v/payguard/bagisto-payguard)](https://packagist.org/packages/payguard/bagisto-payguard)
+[![Bagisto](https://img.shields.io/badge/Bagisto-2.x-orange)](https://bagisto.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-Built against the documented PayGuard API v1.0 and Bagisto's official
-payment-method extension architecture (`devdocs.bagisto.com/payment-method-development`).
+Accept **bKash** and **Nagad** payments in your Bagisto store, powered by the [PayGuard](https://app.sourcemonkey.online) payment gateway — built specifically for Bangladesh merchants.
 
-## What it does
+---
 
-- Adds two payment options at checkout: **bKash** and **Nagad**
-- On "Place Order": creates the Bagisto order, opens a PayGuard transaction, redirects the customer to the bKash/Nagad checkout page
-- On return: shows the customer the right success/failure page
-- On PayGuard's signed webhook (`payment.success`): marks the order paid and generates the invoice — this is the source of truth, independent of whether the customer's browser makes it back to your site
-- Verifies every webhook with HMAC-SHA256 before trusting it
+## Features
 
-## 1. Install
+- bKash and Nagad as separate checkout payment options
+- Full redirect flow: order created → PayGuard → bKash/Nagad → callback
+- Signed webhook (HMAC-SHA256) for reliable server-to-server payment confirmation
+- Invoice auto-created on `payment.success` webhook
+- Per-method connection IDs (so you can have multiple bKash/Nagad accounts)
+- Admin configuration panel — no code changes needed after install
 
-From your Bagisto root directory:
+---
 
-```bash
-# 1. Copy this package in
-cp -r packages/Webkul/PayGuard  <your-bagisto-root>/packages/Webkul/PayGuard
+## Requirements
 
-# 2. Install the PayGuard PHP SDK
-composer require payguard/sdk
-```
+| Requirement | Version |
+|---|---|
+| PHP | ^8.1 |
+| Bagisto | ^2.0 |
+| PayGuard account | [app.sourcemonkey.online](https://app.sourcemonkey.online) |
 
-Add the PSR-4 autoload entry to your **root** `composer.json`:
+---
 
-```json
-{
-    "autoload": {
-        "psr-4": {
-            "Webkul\\PayGuard\\": "packages/Webkul/PayGuard/src"
-        }
-    }
-}
-```
-
-Register the service provider in `bootstrap/providers.php`:
-
-```php
-<?php
-
-return [
-    App\Providers\AppServiceProvider::class,
-    // ... other providers ...
-    Webkul\PayGuard\Providers\PayGuardServiceProvider::class,
-];
-```
-
-Then:
+## Installation
 
 ```bash
-composer dump-autoload
+composer require payguard/bagisto-payguard
 php artisan optimize:clear
 ```
 
-## 2. Configure
+That's it — Laravel auto-discovery registers the service provider automatically.
 
-**Admin Panel → Configuration → Sales → PayGuard Settings**
-- API Key — from PayGuard Dashboard → API & Webhooks → Generate Key
-- API Base URL — `https://app.sourcemonkey.online/api/v1`
-- Webhook Secret — from PayGuard Dashboard → Connections → Edit → Webhook Secret
+---
 
-**Admin Panel → Configuration → Sales → PayGuard - bKash / PayGuard - Nagad**
-- Status → Yes
-- Title / Description — shown to customers at checkout
-- Connection ID — the `mfs_connection_id` for that specific bKash/Nagad connection (from your PayGuard dashboard's Connections list)
+## Configuration
 
-## 3. Point PayGuard at your webhook
+### 1. PayGuard Dashboard setup
 
-In the PayGuard dashboard, set your **default IPN URL** (or rely on the
-per-transaction `webhook_url` this plugin already sends) to:
+Log into [app.sourcemonkey.online](https://app.sourcemonkey.online) and collect:
 
+- **API Key** → API & Webhooks → Generate Key
+- **Webhook Secret** → Connections → Edit → Webhook Secret
+- **bKash Connection ID** → Connections → your bKash connection → ID column
+- **Nagad Connection ID** → Connections → your Nagad connection → ID column
+
+Set your webhook URL in PayGuard to:
 ```
-https://shop.sourcemonkey.online/api/payguard/webhook
-```
-
-This endpoint is CSRF-exempt (it's a server-to-server call from PayGuard, not
-a browser) but every request is signature-verified — do not remove that check.
-
-If you're on Laravel 11's `bootstrap/app.php` middleware style, also add a
-belt-and-suspenders exclusion:
-
-```php
-->withMiddleware(function (Middleware $middleware) {
-    $middleware->validateCsrfTokens(except: [
-        'api/payguard/webhook',
-    ]);
-})
+https://yourdomain.com/api/payguard/webhook
 ```
 
-## 4. Test end-to-end before going live
+### 2. Bagisto Admin Panel
 
-1. Place a real small-value order through checkout, choose bKash
-2. Confirm you land on PayGuard's checkout, complete payment
-3. Confirm you're redirected back and the order shows **Paid** in Admin → Sales → Orders
-4. Check `storage/logs/laravel.log` for `PayGuard webhook received` — this confirms the webhook path actually works before you rely on it in production
-5. Repeat for Nagad
+**Configuration → Sales → PayGuard Settings**
+| Field | Value |
+|---|---|
+| API Key | From PayGuard dashboard |
+| API Base URL | `https://app.sourcemonkey.online/api/v1` |
+| Webhook Secret | From PayGuard dashboard |
 
-## Known area to double-check for your exact Bagisto version
+**Configuration → Sales → PayGuard - bKash**
+| Field | Value |
+|---|---|
+| Status | Yes |
+| Title | bKash (shown to customers) |
+| Connection ID | Your bKash connection ID |
 
-`PayGuardController::markOrderPaid()` builds an invoice directly via
-`InvoiceRepository`. Bagisto's exact invoice-array shape has shifted slightly
-across 1.x/2.x point releases — if invoice creation throws in your logs after
-a real test payment, compare against Admin → an existing order → "Invoice" to
-see the field names your installed version expects, and adjust
-`markOrderPaid()` accordingly. Everything else (API calls, signature
-verification, routes, admin config) follows the documented, stable contracts.
+**Configuration → Sales → PayGuard - Nagad**
+| Field | Value |
+|---|---|
+| Status | Yes |
+| Title | Nagad (shown to customers) |
+| Connection ID | Your Nagad connection ID |
 
-## Files
+---
+
+## How it works
 
 ```
-src/
-├── Config/
-│   ├── payment-methods.php   # registers payguard_bkash / payguard_nagad
-│   └── system.php            # admin settings fields
-├── Payment/
-│   ├── AbstractPayGuardPayment.php
-│   ├── PayGuardBkash.php
-│   └── PayGuardNagad.php
-├── Services/
-│   └── PayGuardClient.php    # REST calls + webhook signature verification
-├── Http/Controllers/
-│   └── PayGuardController.php # redirect / callback / webhook
-├── Providers/
-│   └── PayGuardServiceProvider.php
-└── Routes/
-    └── web.php
+Customer clicks "Place Order"
+    → PayGuardController::redirect()
+        → Creates Bagisto order
+        → Opens PayGuard transaction (POST /transactions)
+        → Initiates bKash/Nagad (POST /bkash/initiate/{id})
+        → Redirects customer to checkout_url
+
+Customer completes bKash/Nagad payment
+    → Browser returns to /payguard/callback/{provider}
+        → Shows success/failure page
+
+PayGuard server calls your webhook (POST /api/payguard/webhook)
+    → Signature verified (HMAC-SHA256)
+    → Order marked paid + invoice created  ← authoritative
 ```
+
+The webhook is the source of truth — order fulfilment happens here, independently of whether the customer's browser makes it back to your site.
+
+---
+
+## Webhooks in local development
+
+PayGuard can't reach `localhost`. Use [ngrok](https://ngrok.com) to expose your local server:
+
+```bash
+ngrok http 8000
+# copy the https URL, e.g. https://a1b2c3d4.ngrok-free.app
+
+# temporarily update APP_URL in .env:
+APP_URL=https://a1b2c3d4.ngrok-free.app
+php artisan config:clear
+```
+
+---
+
+## Changelog
+
+### 1.0.0
+- Initial release: bKash + Nagad via PayGuard, full redirect + webhook flow
+
+---
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+
+## Support
+
+- PayGuard docs: [app.sourcemonkey.online/docs](https://app.sourcemonkey.online/docs)
+- Issues: [github.com/abefimrs/bagisto-payguard/issues](https://github.com/abefimrs/bagisto-payguard/issues)
